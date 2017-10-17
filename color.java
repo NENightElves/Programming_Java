@@ -11,17 +11,20 @@ public class color
 
     public color(int value)
     {
-        int i;
-        String s = Integer.toBinaryString(value);
-        for (i = 8; i <= 15; i++)
-            R = R * 10 + toInt(s, i);
-        for (i = 16; i <= 23; i++)
-            G = G * 10 + toInt(s, i);
-        for (i = 24; i <= 31; i++)
-            B = B * 10 + toInt(s, i);
-        R = toOct(R);
-        G = toOct(G);
-        B = toOct(B);
+//        int i;
+//        String s = Integer.toBinaryString(value);
+//        for (i = 8; i <= 15; i++)
+//            R = R * 10 + toInt(s, i);
+//        for (i = 16; i <= 23; i++)
+//            G = G * 10 + toInt(s, i);
+//        for (i = 24; i <= 31; i++)
+//            B = B * 10 + toInt(s, i);
+//        R = toOct(R);
+//        G = toOct(G);
+//        B = toOct(B);
+        R=(0x00ff0000 & value)>>16;
+        G=(0x0000ff00 & value)>>8;
+        B=0x000000ff & value;
     }
 
     public color(int a, int b, int c)
@@ -31,26 +34,26 @@ public class color
         B = c;
     }
 
-    private int toInt(String s, int i)
-    {
-        if (s.charAt(i) == '1') return 1;
-        else return 0;
-    }
+//    private int toInt(String s, int i)
+//    {
+//        if (s.charAt(i) == '1') return 1;
+//        else return 0;
+//    }
 
-    private int pow(int a, int b)
-    {
-        int s = 1;
-        for (int i = 1; i <= b; i++) s *= a;
-        return s;
-    }
+//    private int pow(int a, int b)
+//    {
+//        int s = 1;
+//        for (int i = 1; i <= b; i++) s *= a;
+//        return s;
+//    }
 
-    private int toOct(int a)
-    {
-        int tmp = 0;
-        for (int i = 0; i <= 7; i++)
-            tmp += (a % 2) * pow(2, i);
-        return tmp;
-    }
+//    private int toOct(int a)
+//    {
+//        int tmp = 0;
+//        for (int i = 0; i <= 7; i++)
+//            tmp += (a % 2) * pow(2, i);
+//        return tmp;
+//    }
 
     public String getColor()
     {
@@ -83,11 +86,11 @@ public class color
 
     public static void main(String[] args)
     {
-        String s = Integer.toBinaryString(0xff00ff00);
+        String s = Integer.toBinaryString(0xffffffff);
         System.out.println(s);
         System.out.println(s.charAt(7));
         System.out.println(Integer.toHexString(255));
-        color x = new color(0xff00ff00);
+        color x = new color(0xffffffff);
         return;
     }
 }
